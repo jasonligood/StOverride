@@ -1,5 +1,5 @@
 name: Fileball解锁
-软件版本：1.2.7
+desc: 解锁Fileball-1.2.7-Pro
 
 http:
   mitm:
@@ -8,7 +8,12 @@ http:
   rewrite:
     - ^(https:\/\/app-measurement\.com\/config\/app\/1?(.*?)*) - reject
   script:
-    - match: ^https?:\/\/api\.revenuecat\.com\/v1\/(receipts|subscribers\/\$RCAnonymousID%3A\w{32})
+#    - match: ^https?:\/\/api\.revenuecat\.com\/v1\/(receipts|subscribers\/\$RCAnonymousID%3A\w{32})
+#    name: FileballPro
+#    type: response
+#    require-body: true
+#    timeout: 10
+    - match: ^https?:\/\/api\.revenuecat\.com\/v1\/
       name: FileballPro
       type: response
       require-body: true
