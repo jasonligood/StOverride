@@ -1,51 +1,14 @@
-name: 知乎
-desc: 去广告及阅读体验增强,适配知乎8.3.0(8020)
+name: Fileball解锁
+desc: 解锁Fileball-1.2.7-Pro
 
 http:
   mitm:
-    - "www.zhihu.com"
-    - "api.zhihu.com"
-    - "zhuanlan.zhihu.com"
-    - "appcloud2.zhihu.com"
-    - "103.41.167.236"
-    - "103.41.167.234"
-    - "103.41.167.235"
-    - "103.41.167.226"
+    - "api.revenuecat.com"
+    - "app-measurement.com"
   rewrite:
-    - ^https?:\/\/(api\.zhihu\.com|(103\.41\.167\.(226|234|235|236)))\/brand\/question\/\d+/card\? - reject
-    - ^https?:\/\/(api\.zhihu\.com|(103\.41\.167\.(226|234|235|236)))\/commercial_api\/launch_v2\? - reject
-    - ^https?:\/\/(api\.zhihu\.com|(103\.41\.167\.(226|234|235|236)))\/explore\/entry\/tips - reject
-    - ^https?:\/\/(www\.zhihu\.com|(103\.41\.167\.(226|234|235|236)))\/api\/v4/(questions|anwsers)\/\d+/related-readings - reject
-    - ^https?:\/\/(www\.zhihu\.com|(103\.41\.167\.(226|234|235|236)))\/api\/v4\/answers\/\d+\/recommendations - reject
-    - ^https?:\/\/(www\.zhihu\.com|(103\.41\.167\.(226|234|235|236)))\/commercial_api\/banners_v3\/mobile_banner - reject
+    - ^https?:\/\/app-measurement\.com\/config\/app\/1?(.*?)* - reject
     - ^https?:\/\/api\.zhihu\.com/moments/hybrid\? - reject
-    - ^https?:\/\/api\.zhihu\.com\/(notifications\/v3\/count|v3\/package|me\/guides|drama\/living-info|ad|fringe|commercial|market\/popovers|search\/(top|tab)|.*featured-comment-ad|appview\/api\/v\d\/answers\/\d+\/recommendations) - reject
-    - ^https?:\/\/api\.zhihu\.com\/ab\/api\/v1\/products\/zhihu\/platforms\/ios\/config - reject
-    - ^https?:\/\/api\.zhihu\.com\/brand\/question\/\d+/card\? - reject
-    - ^https?:\/\/api\.zhihu\.com\/explore\/entry\/tips - reject
-    - ^https?:\/\/api\.zhihu\.com\/moments\/recent - reject
-    - ^https?:\/\/api\.zhihu\.com\/moments\/tab_v2 - reject
-    - ^https?:\/\/api\.zhihu\.com\/people\/self\/new_user_card - reject
-    - ^https?:\/\/www\.zhihu\.com\/api\/v4/(questions|anwsers)\/\d+/related-readings - reject
-    - ^https?:\/\/www\.zhihu\.com\/api\/v4\/answers\/\d+\/recommendations - reject
-    - ^https?:\/\/www\.zhihu\.com\/api\/v4\/hot_recommendation - reject
-    - ^https?:\/\/www\.zhihu\.com\/api\/v\d+\/brand\/question/\d+/card\? - reject
-    - ^https?:\/\/www\.zhihu\.com\/appview\/(p|v2\/answer|zvideo)\/.*entry=(preload-topstory|preload-search|preload-subscription) - reject
-    - ^https?:\/\/www\.zhihu\.com\/commercial_api\/banners_v3\/mobile_banner - reject
-    - ^https?:\/\/zhuanlan\.zhihu\.com\/api\/articles\/\d+\/recommendation - reject
   script:
-    # 知乎_屏蔽关键字解锁
-    - match: ^https?:\/\/api\.zhihu\.com\/feed-root\/block
-      name: zhihu
-      type: request
-      require-body: true
-      timeout: 30
-    # 知乎_优化软件配置
-    - match: ^https?:\/\/appcloud2\.zhihu\.com\/v\d+\/config
-      name: zhihu
-      type: response
-      require-body: true
-      timeout: 30
     # 知乎_信息流去广告及黑名单增强
     - match: ^https?:\/\/api\.zhihu\.com\/(moments|topstory)(\/|\?)?(recommend|action=|feed_type=)(?!\/people)
       name: zhihu
@@ -118,11 +81,3 @@ script-providers:
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/zhihu/zhihu.js
     interval: 86400
 
-rules:
-  - DOMAIN,118.89.204.198,REJECT
-  - IP-CIDR,118.89.204.198/32,REJECT
-  - IP-CIDR6,2402:4e00:1200:ed00:0:9089:6dac:96b6/128,REJECT
-  - DOMAIN,appcloud2.in.zhihu.com,REJECT
-  - DOMAIN,mqtt.zhihu.com,REJECT
-  - DOMAIN,sugar.zhihu.com,REJECT
-  - USER-AGENT,AVOS*,REJECT
