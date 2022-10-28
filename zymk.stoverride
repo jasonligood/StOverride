@@ -11,6 +11,6 @@ http:
       timeout: 10
       
 script-providers:
-  nf:
+  zymk:
     url: https://raw.githubusercontent.com/89996462/Quantumult-X/main/ycdz/zymk.js
     interval: 86400
