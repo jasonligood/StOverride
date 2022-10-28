@@ -16,5 +16,5 @@ http:
       
 script-providers:
   FileballPro:
-    url: https://raw.githubusercontent.com/jasonligood/Stoverride/main/FileballPro.js
+    url: https://raw.githubusercontent.com/jasonligood/StOverride/main/FileballPro.js
     interval: 86400
