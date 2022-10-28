@@ -1,34 +1,33 @@
-const method = $request.method;
-const url = $request.url;
-const status = $response.status;
-let headers = $response.headers;
-const notifiTitle = "百度搜索防跳转AppStore错误";
 
-if (method !== "GET" || status !== 302 || !headers.hasOwnProperty('Location')) {
-    console.log(`method:${method},status:${status},url:${url}`);
-    $notification.post(notifiTitle, "百度防跳转AppStore", "method/status有误");
-} else {
-    if (headers.Location.indexOf('.apple.com') !== -1) {
-        let tokenData = getUrlParamValue(url, 'tokenData');
-        if (tokenData == null) {
-            console.log(`未获取到tokenData,url:${url}`);
-            $notification.post(notifiTitle, "getUrlParamValue", "未获取到tokenData");
-        } else {
-            let tokenDataObj = JSON.parse(decodeURIComponent(tokenData));
-            headers.Location = tokenDataObj.url;
-            console.log('成功');
-        }
-    } else {
-        console.log('无需修改Location');
-    }
-}
-$done({
-    headers
-});
+var body = JSON.parse($response.body);
+var obj = {
+  exp: 0,
+  level: 3,
+  privilege: [
+    { spid: "data_recover", times: 0, expire_time: 1846256142 },
+    { spid: "ocr", times: 0, expire_time: 1846256142 },
+    { spid: "pdf2doc", times: 0, expire_time: 1846256142 },
+    { spid: "pdf_merge", times: 0, expire_time: 1846256142 },
+    { spid: "pdf_sign", times: 0, expire_time: 1846256142 },
+    { spid: "pdf_split", times: 0, expire_time: 1846256142 }
+  ],
+  result: "ok",
+  total_buy: 0,
+  total_cost: -30,
+  userid: body.userid,
+  vip: {
+    name: "超级会员",
+    has_ad: 0,
+    memberid: 40,
+    expire_time: 1846256142,
+    enabled: [
+      { memberid: 40, name: "超级会员", expire_time: 1846256142 },
+      { memberid: 20, name: "WPS会员", expire_time: 1846256142 },
+      { memberid: 12, name: "稻壳会员", expire_time: 1846256142 }
+    ]
+  },
+  wealth: 0,
+  expire_time: 1846256142
+};
 
-function getUrlParamValue(url, queryName) {
-    return Object.fromEntries(url.substring(url.indexOf("?") + 1)
-        .split("&")
-        .map(pair => pair.split("="))
-    )[queryName];
-}
+$done({ body: JSON.stringify(obj) });
