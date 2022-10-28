@@ -6,7 +6,7 @@ http:
     - "api.revenuecat.com"
     - "app-measurement.com"
   rewrite:
-    - ^(https:\/\/app-measurement\.com\/config\/app\/1?(.*?)*) $ reject
+    - ^(https:\/\/app-measurement\.com\/config\/app\/1?(.*?)*) - reject
   script:
     - match: ^https?:\/\/api\.revenuecat\.com\/v1\/(receipts|subscribers\/\$RCAnonymousID%3A\w{32})
       name: FileballPro
