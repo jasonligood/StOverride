@@ -7,19 +7,19 @@ http:
     - "app-measurement.com"
   rewrite:
     - ^(https:\/\/app-measurement\.com\/config\/app\/1?(.*?)*) - reject
-  script:
+#  script:
 #    - match: ^https?:\/\/api\.revenuecat\.com\/v1\/(receipts|subscribers\/\$RCAnonymousID%3A\w{32})
 #    name: FileballPro
 #    type: response
 #    require-body: true
 #    timeout: 10
-    - match: ^https?:\/\/api\.revenuecat\.com\/v1\/
-      name: FileballPro
-      type: response
-      require-body: true
-      timeout: 10
+#    - match: ^https?:\/\/api\.revenuecat\.com\/v1\/
+#      name: FileballPro
+#      type: response
+#      require-body: true
+#      timeout: 10
       
-script-providers:
-  FileballPro:
-    url: https://raw.githubusercontent.com/jasonligood/StOverride/main/FileballPro.js
-    interval: 86400
+#script-providers:
+#  FileballPro:
+#    url: https://raw.githubusercontent.com/jasonligood/StOverride/main/FileballPro.js
+#    interval: 86400
